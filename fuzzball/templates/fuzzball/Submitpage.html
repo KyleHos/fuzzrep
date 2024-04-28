@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Fuzzballs Pet Form</h1><br>
+    <h3>Your Pet's Information<h3>                      
+<ul>
+    {% for submission in submitpage %}
+        <p>Pet Name: {{ submission.pet_name }}</p>
+        <p>Species: {{ submission.species }}</p> 
+        <p>Age: {{ submission.age }}</p>
+        <p>Color: {{ submission.color }}</p>
+        <p>Food Preference: {{ submission.food_preference }}</p><br>
+        
+        {% empty %}
+        <li>No submissions.</li>
+    {% endfor %}
+    
+    </ul>
+
+    <form action="{% url 'clear_submissions' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Clear</button><br><br>
+
+    <a href="{% url 'home' %}">Back</a>  
+</body>
+</html>
